@@ -3,33 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PequeOS | Light. Fast. Atomic.</title>
+    <title>PequeOS | Lightweight OS</title>
     <style>
-        body { font-family: sans-serif; background-color: #0f172a; color: white; text-align: center; padding: 50px; }
-        .container { max-width: 800px; margin: auto; }
-        h1 { font-size: 3rem; color: #38bdf8; }
-        p { font-size: 1.2rem; color: #94a3b8; }
-        .download-box { display: flex; justify-content: space-around; margin-top: 50px; }
-        .btn { background-color: #38bdf8; color: #0f172a; padding: 15px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background-color: #7dd3fc; }
-        .specs { font-size: 0.9rem; margin-top: 10px; color: #64748b; }
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --cyan: #22d3ee;
+            --magenta: #d946ef;
+            --text: #f8fafc;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .logo {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card.cyan { border: 2px solid var(--cyan); box-shadow: 0 0 20px rgba(34, 211, 238, 0.2); }
+        .card.magenta { border: 2px solid var(--magenta); box-shadow: 0 0 20px rgba(217, 70, 239, 0.2); }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        h2 { margin: 10px 0; font-size: 1.5rem; }
+        p { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-cyan { background: var(--cyan); color: #000; }
+        .btn-cyan:hover { background: #fff; box-shadow: 0 0 20px var(--cyan); }
+
+        .btn-magenta { background: var(--magenta); color: #fff; }
+        .btn-magenta:hover { background: #fff; color: #000; box-shadow: 0 0 20px var(--magenta); }
+
+        .mission {
+            max-width: 800px;
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            border-top: 1px solid #334155;
+        }
     </style>
 </head>
 <body>
+
+    <header>
+        <img src="https://img.icons8.com/fluency/96/penguin.png" alt="Logo" class="logo">
+        <h1>Project PequeOS</h1>
+        <p class="subtitle">Building a Lightweight OS for Everyone.</p>
+    </header>
+
     <div class="container">
-        <h1>PequeOS</h1>
-        <p>A lightweight Chromium-based OS optimized for Intel Atom and legacy hardware.</p>
-        
-        <div class="download-box">
-            <div>
-                <a href="#" class="btn">Download 32-bit</a>
-                <p class="specs">For Intel Atom / Low end CPUs / 1GB RAM</p>
-            </div>
-            <div>
-                <a href="#" class="btn">Download 64-bit</a>
-                <p class="specs">For Modern CPUs / 4GB+ RAM</p>
-            </div>
+        <div class="card cyan">
+            <div class="icon">📟</div>
+            <h2>Download 32-bit</h2>
+            <p>For Intel Atom / Low-end CPUs<br>Target: 1GB RAM Devices</p>
+            <a href="#" class="btn btn-cyan">Download</a>
+        </div>
+
+        <div class="card magenta">
+            <div class="icon">💻</div>
+            <h2>Download 64-bit</h2>
+            <p>For Modern AMD/Intel CPUs<br>Target: 1GB+ RAM Devices</p>
+            <a href="#" class="btn btn-magenta">Download</a>
         </div>
     </div>
+
+    <div class="mission">
+        <h3>Our Mission</h3>
+        <p>PequeOS is a community-driven project dedicated to reviving older hardware. We believe that everyone deserves a fast, secure, and modern computing experience, regardless of their specs.</p>
+    </div>
+
 </body>
 </html>
