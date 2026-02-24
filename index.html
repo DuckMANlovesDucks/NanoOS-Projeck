@@ -3,118 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PequeOS | Lightweight OS</title>
+    <title>PequeOS | The Lightweight Revolution</title>
     <style>
         :root {
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --cyan: #22d3ee;
-            --magenta: #d946ef;
-            --text: #f8fafc;
+            --bg: #0b0f1a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-blue: #3b82f6;
+            --accent-cyan: #22d3ee;
+            --text: #ffffff;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+            /* Background grid effect */
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
             min-height: 100vh;
         }
 
         header {
             text-align: center;
-            padding: 50px 20px;
+            padding: 80px 20px 40px 20px;
         }
 
         .logo {
-            width: 80px;
-            margin-bottom: 10px;
+            width: 150px; /* Bigger logo to show off that design! */
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.5));
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(5deg);
         }
 
         h1 {
-            font-size: 3rem;
-            margin: 0;
-            letter-spacing: 2px;
+            font-size: 4rem;
+            margin: 20px 0 0 0;
+            background: linear-gradient(to right, #fff, var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
 
         .subtitle {
             color: #94a3b8;
             font-size: 1.2rem;
-            margin-top: 10px;
+            max-width: 600px;
+            margin: 15px auto;
+            line-height: 1.6;
         }
 
         .container {
             display: flex;
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 50px;
             flex-wrap: wrap;
             justify-content: center;
+            padding: 0 20px;
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
             padding: 40px;
             width: 300px;
             text-align: center;
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
         }
 
-        .card.cyan { border: 2px solid var(--cyan); box-shadow: 0 0 20px rgba(34, 211, 238, 0.2); }
-        .card.magenta { border: 2px solid var(--magenta); box-shadow: 0 0 20px rgba(217, 70, 239, 0.2); }
-
-        .icon {
-            font-size: 50px;
-            margin-bottom: 20px;
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 30px;
         }
 
-        h2 { margin: 10px 0; font-size: 1.5rem; }
-        p { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; }
-
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 12px 30px;
-            border-radius: 10px;
-            text-decoration: none;
+        h2 { font-size: 1.5rem; margin-bottom: 10px; }
+        
+        .spec-label {
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .coming-soon-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            background: #334155;
+            color: #94a3b8;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: not-allowed;
+            border: 1px solid rgba(255,255,255,0.05);
             transition: 0.3s;
         }
 
-        .btn-cyan { background: var(--cyan); color: #000; }
-        .btn-cyan:hover { background: #fff; box-shadow: 0 0 20px var(--cyan); }
+        .card:hover .coming-soon-btn {
+            background: #475569;
+            color: #fff;
+        }
 
-        .btn-magenta { background: var(--magenta); color: #fff; }
-        .btn-magenta:hover { background: #fff; color: #000; box-shadow: 0 0 20px var(--magenta); }
-
-        .mission {
+        .mission-box {
+            margin-top: 100px;
+            padding: 40px;
             max-width: 800px;
             text-align: center;
-            margin-top: 60px;
-            padding: 40px;
-            border-top: 1px solid #334155;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
+
+        .mission-box h3 { color: var(--accent-blue); margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="https://img.icons8.com/fluency/96/penguin.png" alt="Logo" class="logo">
-        <h1>Project PequeOS</h1>
-        <p class="subtitle">Building a Lightweight OS for Everyone.</p>
+        <img src="logo.png" alt="PequeOS Logo" class="logo">
+        <h1>PequeOS</h1>
+        <p class="subtitle">A lightweight Chromium-based OS optimized for Intel Atom and legacy hardware.</p>
     </header>
 
-   <div class="container">
+    <div class="container">
         <div class="card">
             <div class="icon-circle">📟</div>
             <span class="spec-label">Legacy Hardware</span>
@@ -132,9 +168,9 @@
         </div>
     </div>
 
-    <div class="mission">
+    <div class="mission-box">
         <h3>Our Mission</h3>
-        <p>PequeOS is a community-driven project dedicated to reviving older hardware. We believe that everyone deserves a fast, secure, and modern computing experience, regardless of their specs.</p>
+        <p>equeOS is a community-driven project dedicated to reviving older hardware. We believe that everyone deserves a fast, secure, and modern computing experience, regardless of their specs.</p>
     </div>
 
 </body>
