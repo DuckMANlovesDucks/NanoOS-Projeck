@@ -15,21 +15,48 @@
             --muted: #94a3b8;
         }
 
+        /* Background grid */
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
-            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(#1e293b 1px, transparent 1px),
+                linear-gradient(90deg, #1e293b 1px, transparent 1px);
+            background-size: 40px 40px;
             color: var(--text);
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             padding-bottom: 60px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Glow layer */
+        #cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            background: radial-gradient(
+                circle 140px at var(--x) var(--y),
+                rgba(34, 211, 238, 0.25),
+                transparent 60%
+            );
+            mix-blend-mode: screen;
+            transition: background 0.05s linear;
+            z-index: 1;
         }
 
         header {
             text-align: center;
             padding: 70px 20px 40px;
+            position: relative;
+            z-index: 2;
         }
 
         .logo {
@@ -58,6 +85,8 @@
             margin-top: 40px;
             flex-wrap: wrap;
             justify-content: center;
+            position: relative;
+            z-index: 2;
         }
 
         .card {
@@ -135,6 +164,8 @@
             padding: 40px 25px;
             border-top: 1px solid #334155;
             color: var(--muted);
+            position: relative;
+            z-index: 2;
         }
 
         .mission h3 {
@@ -145,6 +176,9 @@
 </head>
 
 <body>
+
+    <!-- Glow effect layer -->
+    <div id="cursor-glow"></div>
 
     <header>
         <img src="https://raw.githubusercontent.com/DuckMANlovesDucks/PequeOS-Project/refs/heads/main/logo.png" alt="PequeOS Logo" class="logo">
@@ -172,6 +206,14 @@
         <h3>Our Mission</h3>
         <p>PequeOS is a community driven project dedicated to reviving older hardware. We believe that everyone deserves a fast, secure, and modern computing experience, regardless of their specs.</p>
     </div>
+
+    <script>
+        document.addEventListener("mousemove", (e) => {
+            const glow = document.getElementById("cursor-glow");
+            glow.style.setProperty("--x", e.clientX + "px");
+            glow.style.setProperty("--y", e.clientY + "px");
+        });
+    </script>
 
 </body>
 </html>
