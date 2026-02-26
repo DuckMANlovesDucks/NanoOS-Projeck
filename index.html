@@ -15,7 +15,7 @@
             --muted: #94a3b8;
         }
 
-        /* Background grid */
+        /* Background grid only */
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
@@ -32,24 +32,6 @@
             padding-bottom: 60px;
             position: relative;
             overflow-x: hidden;
-        }
-
-        /* Glow layer */
-        #cursor-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            background: radial-gradient(
-                circle 140px at var(--x) var(--y),
-                rgba(34, 211, 238, 0.25),
-                transparent 60%
-            );
-            mix-blend-mode: screen;
-            transition: background 0.05s linear;
-            z-index: 1;
         }
 
         header {
@@ -177,9 +159,6 @@
 
 <body>
 
-    <!-- Glow effect layer -->
-    <div id="cursor-glow"></div>
-
     <header>
         <img src="https://raw.githubusercontent.com/DuckMANlovesDucks/PequeOS-Project/refs/heads/main/logo.png" alt="PequeOS Logo" class="logo">
         <h1>Project PequeOS</h1>
@@ -206,14 +185,6 @@
         <h3>Our Mission</h3>
         <p>PequeOS is a community driven project dedicated to reviving older hardware. We believe that everyone deserves a fast, secure, and modern computing experience, regardless of their specs.</p>
     </div>
-
-    <script>
-        document.addEventListener("mousemove", (e) => {
-            const glow = document.getElementById("cursor-glow");
-            glow.style.setProperty("--x", e.clientX + "px");
-            glow.style.setProperty("--y", e.clientY + "px");
-        });
-    </script>
 
 </body>
 </html>
